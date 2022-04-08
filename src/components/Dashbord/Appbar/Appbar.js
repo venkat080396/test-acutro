@@ -6,6 +6,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import { Card, CardHeader, Grid, Avatar, Badge } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 
 import MenuIcon from "@mui/icons-material/Menu";
 import PersonIcon from "@mui/icons-material/Person";
@@ -33,6 +34,12 @@ const AppBar = styled(MuiAppBar, {
   }),
 }));
 
+const useStyles = makeStyles({
+  root: {
+    background: "linear-gradient(135deg, #480CA8, #480CA810)",
+  },
+});
+
 export default function AppBarComponent({
   open,
   openRight,
@@ -41,6 +48,7 @@ export default function AppBarComponent({
   floorName,
   buildingName,
 }) {
+  const classes = useStyles();
   return (
     <AppBar
       position="fixed"
@@ -50,7 +58,7 @@ export default function AppBarComponent({
       pr={openRight ? `${drawerWidth}px` : 0}
       elevation={0}
     >
-      <Box backgroundColor="linear-gradient(135deg, #480CA8, #62BEAC)">
+      <Box className={classes.root}>
         <Toolbar>
           <IconButton
             color="inherit"

@@ -12,6 +12,9 @@ import DrawerRightComponent from "../../components/Dashbord/DrawerRight/DrawerRi
 import StatisticComponent from "../../components/Dashbord/StatisticsSection";
 import MapContainer from "../../components/Dashbord/Map";
 import GraphContainer from "../../components/Dashbord/Charts";
+import EnegryComponent from "../../components/Dashbord/Energy";
+import HavcComponent from "../../components/Dashbord/HAVC";
+import ActiveAlertComponent from "../../components/Dashbord/ActiveAlert";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -28,7 +31,6 @@ const useStyles = makeStyles({
     background: "linear-gradient(135deg, #480CA8, #62BEAC)",
     color: "white",
     display: "flex",
-    position:"relative"
   },
 });
 
@@ -55,13 +57,13 @@ export default function MiniDrawer(props) {
           props.dashbordDate.data.length === 0
             ? ""
             : props.dashbordDate.data[props.dashbordDate.selectedBuilding]
-                .floorName[props.dashbordDate.selectedFloor]
+              .floorName[props.dashbordDate.selectedFloor]
         }
         buildingName={
           props.dashbordDate.data.length === 0
             ? ""
             : props.dashbordDate.data[props.dashbordDate.selectedBuilding]
-                .buildingName
+              .buildingName
         }
       />
       <DrawerLeftComponent
@@ -81,19 +83,41 @@ export default function MiniDrawer(props) {
         <Box mt={4}></Box>
         <Grid container spacing={2}>
           <Grid item md={7} lg={7} xl={7}>
-            <StatisticComponent />
+            <Grid container spacing={2}>
+              <Grid item md={12} sm={12} lg={12}>
+
+                <StatisticComponent />
+              </Grid>
+              <Grid item md={12} sm={12} lg={12}>
+
+                <EnegryComponent />
+              </Grid>
+            </Grid>
+            {/* <HavcComponent/> */}
+            {/* <ActiveAlertComponent/> */}
           </Grid>
           <Grid item md={5} lg={5} xl={5}>
-            <Grid container spacing={4}>
+            <Grid container spacing={2}>
               <Grid item sm={12} md={12} lg={12}>
                 <MapContainer />
               </Grid>
               <Grid item sm={12} md={12} lg={12}>
-                <GraphContainer/>
+                <GraphContainer />
+              </Grid>
+            </Grid>
+          </Grid>
+          <Grid item md={12} lg={12}>
+            <Grid container spacing={2} component={Box} mt={4}>
+              <Grid item md={5} lg={5}>
+                <ActiveAlertComponent />
+              </Grid>
+              <Grid item md={7} lg={7}>
+                <HavcComponent />
               </Grid>
             </Grid>
           </Grid>
         </Grid>
+
       </Box>
       <DrawerRightComponent
         openRight={openRight}

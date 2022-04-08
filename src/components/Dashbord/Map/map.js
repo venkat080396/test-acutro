@@ -34,7 +34,7 @@ export default function App() {
     <div style={{borderRadius: '15px',overflow:'hidden'}}>
       <div style={{borderRadius: '15px'}} className="sidebar">
       </div>
-      <div ref={mapContainer} style={{borderRadius: '15px', height:'300px',width:'500px'}} className="map-container" />
+      <div ref={mapContainer} style={{borderRadius: '15px', height:'383px',width:'500px'}} className="map-container" />
     </div>
   );
 }
