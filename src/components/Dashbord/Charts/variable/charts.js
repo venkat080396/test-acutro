@@ -424,8 +424,8 @@ const chartExample5 = {
     let ctx = canvas.getContext("2d");
     var gradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
 
-    gradientStroke.addColorStop(1, "rgba(72,72,176,0.4)");
-    gradientStroke.addColorStop(0.8, "rgba(72,72,176,0.2)");
+    gradientStroke.addColorStop(1, "rgba(72, 176, 113, 0.4)");
+    gradientStroke.addColorStop(0.8, "rgba(72, 176, 113,0.2)");
     gradientStroke.addColorStop(0, "rgba(119,52,169,0)"); //purple colors
     return {
       labels: ["7:00", "8:00", "9:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00"],
@@ -434,19 +434,19 @@ const chartExample5 = {
           label: "Data",
           fill: true,
           backgroundColor: gradientStroke,
-          borderColor: "#ba54f5",
+          borderColor: "#78E991",  //#ba54f5
           borderWidth: 2,
           borderDash: [],
           borderDashOffset: 0.0,
-          pointBackgroundColor: "#be55ed",
+          pointBackgroundColor: "rgba(255,255,255,0)",  //#78E991    #be55ed
           pointBorderColor: "rgba(255,255,255,0)",
-          pointHoverBackgroundColor: "#be55ed",
-          pointHoverBorderColor:'rgba(35,46,55,1)',
+          pointHoverBackgroundColor: "#78E991",   //be55ed
+          pointHoverBorderColor: 'rgba(35,46,55,1)',
           pointBorderWidth: 20,
           pointHoverRadius: 4,
           pointHoverBorderWidth: 15,
           pointRadius: 4,
-          data: [34,70,44,67,84,92,88,130,122,144],
+          data: [6, 7, 10, 12, 6, 9, 8, 10, 12, 14],
         },
       ],
     };
@@ -477,27 +477,29 @@ const chartExample5 = {
             zeroLineColor: "transparent",
           },
           ticks: {
-            suggestedMin: 60,
-            suggestedMax: 125,
+            suggestedMin: 6,
+            suggestedMax: 14,
             padding: 2,
             fontColor: "#ffffff",
-          },
+            beginAtZero: true,
+            callback: (label) => `${label}°`,
+        },
         },
       ],
-      xAxes: [
-        {
-          barPercentage: 1.6,
-          gridLines: {
-            drawBorder: false,
-            color: "rgba(186,84,245,0.1)",
-            zeroLineColor: "transparent",
-          },
-          ticks: {
-            padding: 20,
-            fontColor: "#ffffff",
-          },
-        },
-      ],
+xAxes: [
+  {
+    barPercentage: 1.6,
+    gridLines: {
+      drawBorder: false,
+      color: "rgba(186,84,245,0.1)",
+      zeroLineColor: "transparent",
+    },
+    ticks: {
+      padding: 20,
+      fontColor: "#ffffff",
+    },
+  },
+],
     },
   },
 };

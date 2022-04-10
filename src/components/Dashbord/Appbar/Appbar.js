@@ -36,7 +36,8 @@ const AppBar = styled(MuiAppBar, {
 
 const useStyles = makeStyles({
   root: {
-    background: "linear-gradient(135deg, #480CA8, #480CA810)",
+    background: "linear-gradient(135deg, #344D5E, #1F1A3B)",
+    zIndex:10
   },
 });
 
@@ -54,9 +55,10 @@ export default function AppBarComponent({
       position="fixed"
       open={open}
       component={Box}
-      backgroundColor="linear-gradient(135deg, #480CA8, #62BEAC)"
-      pr={openRight ? `${drawerWidth}px` : 0}
       elevation={0}
+      sx={{
+        zIndex:10
+      }}
     >
       <Box className={classes.root}>
         <Toolbar>
@@ -79,54 +81,56 @@ export default function AppBarComponent({
             / {buildingName} / {floorName} / 19/07/21 - 21/07/21
           </Typography>
           <Box flex={1}></Box>
-          <Box>
-            <Card
-              sx={{ backgroundColor: "transparent", color: "white" }}
-              elevation={0}
-            >
-              <CardHeader
-                avatar={
-                  <Avatar sx={{ bgcolor: "white", color: "red" }}>R</Avatar>
-                }
-                title={
-                  <Typography variant="body1" fontWeight={700}>
-                    Your Company Name
-                  </Typography>
-                }
-                subheader={
-                  <Typography variant="body2">Administrator</Typography>
-                }
-                action={
-                  <Grid container spacing={2} ml={2} alignItems="center">
-                    <Grid item>
-                      <IconButton>
-                        <PersonIcon sx={{ color: "white" }} />
-                      </IconButton>
-                    </Grid>
-                    <Grid item>
-                      <IconButton>
-                        <Badge badgeContent={4} color="primary">
-                          <NotificationsNoneIcon sx={{ color: "white" }} />
-                        </Badge>
-                      </IconButton>
-                    </Grid>
-                  </Grid>
-                }
-              />
-            </Card>
-          </Box>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={rightOpenClose}
-            edge="start"
-            sx={{
-              marginRight: openRight ? -8 : -2,
-              marginLeft: 5,
-            }}
-          >
-            <FilterAltIcon />
-          </IconButton>
+          {!openRight && (
+            <>
+              <Box>
+                <Card
+                  sx={{ backgroundColor: "transparent", color: "white" }}
+                  elevation={0}
+                >
+                  <CardHeader
+                    avatar={
+                      <Avatar sx={{ bgcolor: "white", color: "red" }}>R</Avatar>
+                    }
+                    title={
+                      <Typography variant="body1" fontWeight={700}>
+                        Your Company Name
+                      </Typography>
+                    }
+                    subheader={
+                      <Typography variant="body2">Administrator</Typography>
+                    }
+                    action={
+                      <Grid container spacing={2} ml={2} alignItems="center">
+                        <Grid item>
+                          <IconButton>
+                            <PersonIcon sx={{ color: "white" }} />
+                          </IconButton>
+                        </Grid>
+                        <Grid item>
+                          <IconButton>
+                            <Badge badgeContent={4} color="primary">
+                              <NotificationsNoneIcon sx={{ color: "white" }} />
+                            </Badge>
+                          </IconButton>
+                        </Grid>
+                        <Grid item>
+                          <IconButton
+                            color="inherit"
+                            aria-label="open drawer"
+                            onClick={rightOpenClose}
+                            edge="start"
+                          >
+                            <FilterAltIcon />
+                          </IconButton>
+                        </Grid>
+                      </Grid>
+                    }
+                  />
+                </Card>
+              </Box>
+            </>
+          )}
         </Toolbar>
       </Box>
     </AppBar>

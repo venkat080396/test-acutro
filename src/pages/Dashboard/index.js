@@ -15,6 +15,9 @@ import GraphContainer from "../../components/Dashbord/Charts";
 import EnegryComponent from "../../components/Dashbord/Energy";
 import HavcComponent from "../../components/Dashbord/HAVC";
 import ActiveAlertComponent from "../../components/Dashbord/ActiveAlert";
+import EnergyIntensityComponent from "../../components/Dashbord/EnergyIntencity";
+
+import Image from "../../asset/image/Background.png";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -28,9 +31,15 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 
 const useStyles = makeStyles({
   root: {
-    background: "linear-gradient(135deg, #480CA8, #62BEAC)",
+    backgroundImage: `url(${Image})`,
+    backgroundRepeat: "no-repeat",
+    objectFit: "fill",
+    width: "100vw",
+    // background: "linear-gradient(135deg, #1F1A3B, #344D5E)",
     color: "white",
     display: "flex",
+    height: "100vh",
+    overflow: "scroll",
   },
 });
 
@@ -57,13 +66,13 @@ export default function MiniDrawer(props) {
           props.dashbordDate.data.length === 0
             ? ""
             : props.dashbordDate.data[props.dashbordDate.selectedBuilding]
-              .floorName[props.dashbordDate.selectedFloor]
+                .floorName[props.dashbordDate.selectedFloor]
         }
         buildingName={
           props.dashbordDate.data.length === 0
             ? ""
             : props.dashbordDate.data[props.dashbordDate.selectedBuilding]
-              .buildingName
+                .buildingName
         }
       />
       <DrawerLeftComponent
@@ -85,16 +94,12 @@ export default function MiniDrawer(props) {
           <Grid item md={7} lg={7} xl={7}>
             <Grid container spacing={2}>
               <Grid item md={12} sm={12} lg={12}>
-
                 <StatisticComponent />
               </Grid>
               <Grid item md={12} sm={12} lg={12}>
-
                 <EnegryComponent />
               </Grid>
             </Grid>
-            {/* <HavcComponent/> */}
-            {/* <ActiveAlertComponent/> */}
           </Grid>
           <Grid item md={5} lg={5} xl={5}>
             <Grid container spacing={2}>
@@ -108,6 +113,14 @@ export default function MiniDrawer(props) {
           </Grid>
           <Grid item md={12} lg={12}>
             <Grid container spacing={2} component={Box} mt={4}>
+              <Grid item md={6} lg={6}>
+                <EnergyIntensityComponent />
+              </Grid>
+              <Grid item md={6} lg={6}></Grid>
+            </Grid>
+          </Grid>
+          <Grid item md={12} lg={12}>
+            <Grid container spacing={2} component={Box} mt={4}>
               <Grid item md={5} lg={5}>
                 <ActiveAlertComponent />
               </Grid>
@@ -117,7 +130,6 @@ export default function MiniDrawer(props) {
             </Grid>
           </Grid>
         </Grid>
-
       </Box>
       <DrawerRightComponent
         openRight={openRight}

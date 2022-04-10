@@ -1,20 +1,27 @@
 import React from "react";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
-import MuiDrawer from "@mui/material/Drawer";
+import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
 import ListItemButtonMUI from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import { Grid, TextField, Typography } from "@mui/material";
 import { withStyles, makeStyles } from "@mui/styles";
-import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
+import {
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  IconButton,
+} from "@mui/material";
 
 import HomeIcon from "@mui/icons-material/Home";
 import DynamicFeedIcon from "@mui/icons-material/DynamicFeed";
 import DateRangeIcon from "@mui/icons-material/DateRange";
 import SettingsIcon from "@mui/icons-material/Settings";
-import { red } from "@mui/material/colors";
+import FilterAltIcon from "@mui/icons-material/FilterAlt";
+
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
@@ -31,27 +38,6 @@ const theme = createTheme({
 
 const drawerWidth = 240;
 
-const openedMixin = (theme) => ({
-  width: drawerWidth,
-  transition: theme.transitions.create("width", {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.enteringScreen,
-  }),
-  overflowX: "hidden",
-});
-
-const closedMixin = (theme) => ({
-  transition: theme.transitions.create("width", {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  overflowX: "hidden",
-  width: `calc(${theme.spacing(7)} + 1px)`,
-  [theme.breakpoints.up("sm")]: {
-    width: `calc(${theme.spacing(8)} + 1px)`,
-  },
-});
-
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
@@ -60,23 +46,6 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   padding: theme.spacing(0, 1),
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
-}));
-
-const Drawer = styled(MuiDrawer, {
-  shouldForwardProp: (prop) => prop !== "open",
-})(({ theme, open }) => ({
-  width: drawerWidth,
-  flexShrink: 0,
-  whiteSpace: "nowrap",
-  boxSizing: "border-box",
-  ...(open && {
-    ...openedMixin(theme),
-    "& .MuiDrawer-paper": openedMixin(theme),
-  }),
-  ...(!open && {
-    ...closedMixin(theme),
-    "& .MuiDrawer-paper": closedMixin(theme),
-  }),
 }));
 
 const ListItemButton = withStyles({
@@ -126,23 +95,17 @@ export default function DrawerRightComponent(props) {
   return (
     <ThemeProvider theme={theme}>
       <Drawer
-        variant="permanent"
         open={props.openRight}
         PaperProps={{
           sx: {
-            backgroundColor: "transparent",
+            background: "linear-gradient(135deg, #1F1A3B, #344D5E)",
             color: "white",
+            zIndex: 100000,
           },
         }}
         anchor="right"
-        onMouseEnter={props.openDrawer}
-        onMouseLeave={props.closeDrawer}
+        onClose={props.closeDrawer}
       >
-        <DrawerHeader>
-          <Grid container flex={1} component={Box}>
-            <Grid item justifyContent={"flex-start"}></Grid>
-          </Grid>
-        </DrawerHeader>
         <List>
           {["Building Name"].map((text, index) => (
             <ListItemButton
@@ -177,6 +140,9 @@ export default function DrawerRightComponent(props) {
                 sx={{
                   color: "white",
                 }}
+                style={{
+                  color: "white",
+                }}
               >
                 Building Name
               </InputLabel>
@@ -185,12 +151,11 @@ export default function DrawerRightComponent(props) {
                 label="Building Name"
                 components={Box}
                 variant="outlined"
-                style={{
+                sx={{
                   outlineColor: "white",
                   borderColor: "white",
                   color: "white",
                 }}
-                color="primary"
                 onChange={handleChange}
               >
                 {props.building.length === 0 ? (
@@ -198,7 +163,9 @@ export default function DrawerRightComponent(props) {
                 ) : (
                   props.building.map((item, inx) => (
                     <MenuItem value={inx}>
-                      <Typography color="black">{item?.buildingName}</Typography>
+                      <Typography color="white">
+                        {item?.buildingName}
+                      </Typography>
                     </MenuItem>
                   ))
                 )}
