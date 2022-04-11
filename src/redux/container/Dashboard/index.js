@@ -5,6 +5,7 @@ import { dashboardToDo ,fetchBuilding, selectBuilding, selectFloor } from "../..
 const mapStateToProps = (state) => ({
     userInformation: state?.login?.userInfo,
     dashbordDate: state?.dashboard,
+    state:state
 });
 
 const mapDispatchToProps = (dispatch) => ({

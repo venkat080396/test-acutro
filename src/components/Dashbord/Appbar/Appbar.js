@@ -37,7 +37,7 @@ const AppBar = styled(MuiAppBar, {
 const useStyles = makeStyles({
   root: {
     background: "linear-gradient(135deg, #344D5E, #1F1A3B)",
-    zIndex:10
+    zIndex: 10,
   },
 });
 
@@ -57,7 +57,7 @@ export default function AppBarComponent({
       component={Box}
       elevation={0}
       sx={{
-        zIndex:10
+        zIndex: 10,
       }}
     >
       <Box className={classes.root}>
@@ -78,7 +78,9 @@ export default function AppBarComponent({
             <Typography variant="h6" fontWeight={"700"} display={"inline"}>
               Your Dashboard &nbsp;
             </Typography>
-            / {buildingName} / {floorName} / 19/07/21 - 21/07/21
+            {buildingName ? `/ ${buildingName} /` : ""}
+            {floorName ? `/ ${floorName} /` : ""}
+            {buildingName && floorName ? "19/07/21 - 21/07/21" : ""}
           </Typography>
           <Box flex={1}></Box>
           {!openRight && (

@@ -7,11 +7,7 @@ import IconButton from "@mui/material/IconButton";
 import ListItemButtonMUI from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import {
-  Grid,
-  Collapse,
-  ListItem,
-} from "@mui/material";
+import { Grid, Collapse, ListItem } from "@mui/material";
 import { withStyles } from "@mui/styles";
 
 import MenuIcon from "@mui/icons-material/Menu";
@@ -21,7 +17,9 @@ import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import CorporateFareIcon from "@mui/icons-material/CorporateFare";
 import SettingsIcon from "@mui/icons-material/Settings";
 import ContrastIcon from "@mui/icons-material/Contrast";
+import { Link } from "react-router-dom";
 
+const RoutsPath=['/dashboard','/alart','/dashboard']
 
 const drawerWidth = 240;
 
@@ -55,7 +53,6 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
 }));
-
 
 const Drawer = styled(MuiDrawer, {
   shouldForwardProp: (prop) => prop !== "open",
@@ -101,7 +98,7 @@ const ListItemButton = withStyles({
   selected: {},
 })(ListItemButtonMUI);
 
-export default function DrawerLeftComponent({ open, leftClose,leftOpen }) {
+export default function DrawerLeftComponent({ open, leftClose, leftOpen }) {
   const [isOpenReport, setIsOpenReport] = React.useState(false);
 
   return (
@@ -128,36 +125,38 @@ export default function DrawerLeftComponent({ open, leftClose,leftOpen }) {
       </DrawerHeader>
       <List>
         {["Home", "Alerts", "Building Data"].map((text, index) => (
-          <ListItemButton
-            key={text}
-            sx={{
-              minHeight: 48,
-              justifyContent: open ? "initial" : "center",
-              px: 2.5,
-              mx: 1,
-              "&:hover": {
-                backgroundColor: "#4991BC",
-                borderRadius: 2,
-              },
-            }}
-          >
-            <ListItemIcon
+          <Link to={RoutsPath[index]}>
+            <ListItemButton
+              key={text}
               sx={{
-                minWidth: 0,
-                mr: open ? 3 : "auto",
-                justifyContent: "center",
+                minHeight: 48,
+                justifyContent: open ? "initial" : "center",
+                px: 2.5,
+                mx: 1,
+                "&:hover": {
+                  backgroundColor: "#4991BC",
+                  borderRadius: 2,
+                },
               }}
             >
-              {index === 0 ? <HomeIcon sx={{ color: "white" }} /> : <></>}
-              {index === 1 ? <MicNoneIcon sx={{ color: "white" }} /> : <></>}
-              {index === 2 ? (
-                <AccountBalanceIcon sx={{ color: "white" }} />
-              ) : (
-                <></>
-              )}
-            </ListItemIcon>
-            <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
-          </ListItemButton>
+              <ListItemIcon
+                sx={{
+                  minWidth: 0,
+                  mr: open ? 3 : "auto",
+                  justifyContent: "center",
+                }}
+              >
+                {index === 0 ? <HomeIcon sx={{ color: "white" }} /> : <></>}
+                {index === 1 ? <MicNoneIcon sx={{ color: "white" }} /> : <></>}
+                {index === 2 ? (
+                  <AccountBalanceIcon sx={{ color: "white" }} />
+                ) : (
+                  <></>
+                )}
+              </ListItemIcon>
+              <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
+            </ListItemButton>
+          </Link>
         ))}
       </List>
       <List>
