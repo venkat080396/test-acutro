@@ -31,11 +31,11 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 
 const useStyles = makeStyles({
   root: {
-    backgroundImage: `url(${Image})`,
+//     backgroundImage: `url(${Image})`,
     backgroundRepeat: "no-repeat",
     objectFit: "fill",
     width: "100vw",
-    // background: "linear-gradient(135deg, #1F1A3B, #344D5E)",
+    background: "linear-gradient(135deg, #1F1A3B, #344D5E)",
     color: "white",
     display: "flex",
     height: "100vh",
