@@ -7,8 +7,7 @@ import { ROUTES } from './constants/index';
 import Login from './redux/container/Login';
 import Dashboard from './redux/container/Dashboard';
 import Alart from './redux/container/Alart';
-
-import BuildingData from './pages/BuildingData';
+import BuildingData from './redux/container/BuildingData';
 
 function App() {
 	return (
